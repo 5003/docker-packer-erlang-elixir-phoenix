@@ -1,0 +1,44 @@
+{
+  "builders": [
+    {
+      "type": "docker",
+      "image": "quay.io/5003/alpine-edge-ansible",
+      "export_path": "dummy.tar"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "file",
+      "source": "prov/",
+      "destination": "/tmp/"
+    },
+    {
+      "type": "shell",
+      "inline_shebang": "/usr/bin/env bash",
+      "inline": [
+        "export __tags='{{ user `__tags` }}'",
+        "export __extra_vars='{{ user `__extra_vars` }}'",
+        "export devbranch=alpine",
+        "/tmp/wizards.sh"
+      ]
+    },
+    {
+      "type": "shell",
+      "inline": [
+        "rm -rf /usr/local/src/",
+        "{{ user `check_versions` }}",
+        "apk del --no-cache ansible git sudo wget",
+        "rm -rf /tmp/*"
+      ]
+    }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "docker-import",
+        "repository": "5003/{{ user `image_name` }}",
+        "tag": "{{ user `image_tag` }}"
+      }
+    ]
+  ]
+}

@@ -1,0 +1,7 @@
+{
+    "image_name": "elixir",
+    "image_tag": "test",
+    "__tags": "erlang elixir_lang",
+    "__extra_vars": "dummy=dummy",
+    "check_versions": ""
+}

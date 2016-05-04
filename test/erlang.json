@@ -1,0 +1,7 @@
+{
+    "image_name": "erlang",
+    "image_tag": "test",
+    "__tags": "erlang",
+    "__extra_vars": "dummy=dummy",
+    "check_versions": ""
+}
