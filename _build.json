@@ -2,7 +2,7 @@
   "builders": [
     {
       "type": "docker",
-      "image": "5003/centos-ansible-ci:2.1.x",
+      "image": "quay.io/5003/alpine-edge-ansible",
       "export_path": "dummy.tar"
     }
   ],
